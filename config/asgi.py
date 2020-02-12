@@ -13,8 +13,6 @@ from django.core.asgi import get_asgi_application
 
 import sys
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
-
 app_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
 sys.path.append(os.path.join(app_path, 'hprod'))
 
