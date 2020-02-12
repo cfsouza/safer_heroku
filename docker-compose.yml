@@ -1,0 +1,15 @@
+# https://docs.docker.com/compose/django/
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    env_file:
+      - ./config/settings/.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes: #not recommended in dev mode
+      - .:/code
+    ports:
+      - "8000:8000"
