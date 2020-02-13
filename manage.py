@@ -6,7 +6,6 @@ import sys
 
 def main():
     # https://thinkster.io/tutorials/configuring-django-settings-for-production
-    print(os.environ.get('DJANGO_SETTINGS_MODULE'))
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
