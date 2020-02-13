@@ -2,4 +2,4 @@ build:
   docker:
     web: prod.Dockerfile
 run:
-  web: gunicorn -k uvicorn.workers.UvicornWorker hprod.config.asgi:pages —-log-file -
+  web: gunicorn -k uvicorn.workers.UvicornWorker config.asgi:pages
