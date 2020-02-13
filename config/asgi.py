@@ -16,6 +16,4 @@ import sys
 app_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
 sys.path.append(os.path.join(app_path, 'hprod'))
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.production")
-
 application = get_asgi_application()
