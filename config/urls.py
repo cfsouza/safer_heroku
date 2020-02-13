@@ -23,10 +23,13 @@ urlpatterns = [
 ]
 
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-if os.environ.setdefault("DEBUG", True):
-    from config.settings.base import INSTALLED_APPS
-    if 'debug_toolbar' in INSTALLED_APPS:
-        import debug_toolbar
-        urlpatterns = [
-                          path('__debug__/', include(debug_toolbar.urls)),
-                      ] + urlpatterns
+try:
+    if os.environ["DEBUG"]:
+        from config.settings.base import INSTALLED_APPS
+        if 'debug_toolbar' in INSTALLED_APPS:
+            import debug_toolbar
+            urlpatterns = [
+                              path('__debug__/', include(debug_toolbar.urls)),
+                          ] + urlpatterns
+except KeyError:
+    pass # if DEBUG is absent code is interpreted in production environment
