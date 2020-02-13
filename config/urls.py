@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from config.settings.base import INSTALLED_APPS
 import os
 
 urlpatterns = [
@@ -24,8 +23,10 @@ urlpatterns = [
 ]
 
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-if os.environ["DEBUG"] and 'debug_toolbar' in INSTALLED_APPS:
-    import debug_toolbar
-    urlpatterns = [
-                      path('__debug__/', include(debug_toolbar.urls)),
-                  ] + urlpatterns
+if os.environ.setdefault("DEBUG", True):
+    from config.settings.base import INSTALLED_APPS
+    if 'debug_toolbar' in INSTALLED_APPS:
+        import debug_toolbar
+        urlpatterns = [
+                          path('__debug__/', include(debug_toolbar.urls)),
+                      ] + urlpatterns
