@@ -32,4 +32,4 @@ try:
                               path('__debug__/', include(debug_toolbar.urls)),
                           ] + urlpatterns
 except KeyError:
-    pass # if DEBUG is absent code is interpreted in production environment
+    pass  # if DEBUG is absent code is interpreted in production environment
