@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+import django_environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -100,6 +101,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+public_root = root.path('public/')
+STATIC_ROOT = public_root('static')
 
 STATIC_URL = '/static/'
 

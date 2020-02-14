@@ -13,9 +13,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-"""
 app_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
-sys.path.append(os.path.join(app_path, 'pages'))
-"""
+sys.path.append(os.path.join(app_path, 'hprod'))
+
 application = get_wsgi_application()
