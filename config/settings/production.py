@@ -16,6 +16,7 @@ import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env = environ.Env(DEBUG=(bool, False),)  # set default values and casting
 
 
 # Quick-start development settings - unsuitable for production
@@ -61,6 +62,12 @@ TEMPLATES = [
     },
 ]
 
+DATABASES = {
+    'default': env.db(),  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
+}
+
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
@@ -101,13 +108,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
-SITE_ROOT = root()
-
-public_root = root.path('public/')
-STATIC_ROOT = public_root('static')
-
-STATIC_URL = '/static/'
 
 
 django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']  # https://www.gitmemory.com/issue/jacobian/dj-database-url/107/514647600
