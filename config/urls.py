@@ -23,7 +23,6 @@ urlpatterns = [
 ]
 
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-"""
 if eval(os.environ["DEBUG"]):
     from config.settings.base import INSTALLED_APPS
     if 'debug_toolbar' in INSTALLED_APPS:
@@ -31,4 +30,3 @@ if eval(os.environ["DEBUG"]):
         urlpatterns = [
                           path('__debug__/', include(debug_toolbar.urls)),
                       ] + urlpatterns
-"""
