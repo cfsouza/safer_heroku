@@ -102,6 +102,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+SITE_ROOT = root()
+
 public_root = root.path('public/')
 STATIC_ROOT = public_root('static')
 
